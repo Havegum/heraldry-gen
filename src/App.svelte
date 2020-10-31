@@ -1,4 +1,6 @@
 <script>
+import { w } from '@/ShieldGen.ts';
+console.log(w)
 let message = 'Hei, verden!';
 
 // export let target; // Element the app attaches to

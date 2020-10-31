@@ -1,0 +1,46 @@
+shield1:
+  fields:
+    - symbol: vertical-split
+      fields:
+        - background: red
+          symbol:
+            type: lion
+            pose: rampant
+            clawed: true
+            tongue: true
+
+        - background: red
+          symbol:
+            type: stripes
+            direction: horizontal
+            color: silver
+
+shield2:
+  fields:
+    - background: red
+      symbol:
+        type: crown
+        color: gold
+
+shield3:
+  field:
+    symbol:
+      symbol: 'lion'
+      properties:
+        # ...
+    background:
+      Metal.gold
+
+interface Symbol {
+  symbol: string,
+  properties: object,
+}
+
+interface SymbolField {
+  symbol: Symbol,
+  background: Background
+}
+
+interface Shield {
+  field: Field,
+}
