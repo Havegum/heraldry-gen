@@ -1,7 +1,12 @@
-<script lang="ts">
+<script>
 import Division from '@/components/Division.svelte';
 import Symbol from '@/components/Symbol.svelte';
+
 export let field;
+export let svg = '';
+let svgElement;
+
+$: if (svgElement) svg = svgElement.outerHTML;
 
 const component = {
   Symbol,
@@ -46,7 +51,7 @@ const shieldPath = pointy;
 
 
 <figure>
-  <svg viewBox="0 0 {width} {height}">
+  <svg viewBox="0 0 {width} {height}" bind:this={svgElement}>
     <defs>
       <path id="shield" d={shieldPath}/>
       <clipPath id="shield-clip">

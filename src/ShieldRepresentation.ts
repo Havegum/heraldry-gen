@@ -1,14 +1,14 @@
 export enum Color {
-  red = '#ff0000',
-  green = '#00ff00',
-  blue = '#0000ff',
-  black = '#000000',
-  purple = '#cc00cc',
+  red = '#c83223',
+  green = '#218c49',
+  blue = '#1480bd',
+  black = '#2a2a2a',
+  purple = '#5c2871',
 }
 
 export enum Metal {
-  gold = '#ffff00',
-  silver = '#ffffff',
+  gold = '#ffe600',
+  silver = '#f0f0f0',
 }
 
 export type Tincture = Color | Metal;
