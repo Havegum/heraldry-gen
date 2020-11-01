@@ -1,112 +1,85 @@
-import { Shield, Color, Metal, SymbolField, Field, DivisionType } from './ShieldRepresentation';
+import { Shield, Color, Metal, SymbolField, SplitField, Field, DivisionType, Symbol } from './ShieldRepresentation';
 
-let simpleSymbolField: Field = {
-  type: 'Symbol',
-  symbol: {
-    color: Metal.gold,
-    symbol: 'circle',
-    properties: {}
-  },
-  background: Color.red,
-};
+let simpleSymbolField: Field = new SymbolField({
+  symbol: new Symbol({
+    symbol: 'diamond',
+    color: Color.black,
+    properties: { dotted: true },
+  }),
+  background: Metal.gold,
+});
 
-let dividedField: Field = {
-  type: 'Division',
-  division: {
-    type: DivisionType.vertical
-  },
+let dividedField: Field = new SplitField({
+  division: { type: DivisionType.vertical },
   fields: [
-    {
-      type: 'Symbol',
-      symbol: {
-        color: Metal.gold,
+    new SymbolField({
+      symbol: new Symbol({
         symbol: 'circle',
-        properties: {}
-      },
+        color: Metal.gold
+      }),
       background: Color.red
-    },
-    {
-      type: 'Division',
-      division: {
-        type: DivisionType.horizontal,
-      },
+    }),
+    new SplitField({
+      division: { type: DivisionType.horizontal, },
       fields: [
-        {
-          type: 'Division',
-          division: {
-            type: DivisionType.horizontal,
-          },
+        new SplitField({
+          division: { type: DivisionType.horizontal },
           fields: [
-            {
-              type: 'Division',
-              division: {
-                type: DivisionType.vertical,
-              },
+            new SplitField({
+              division: { type: DivisionType.vertical },
               fields: [
-                {
-                  type: 'Symbol',
-                  symbol: {
+                new SymbolField({
+                  symbol: new Symbol({
+                    symbol: 'diamond',
                     color: Metal.silver,
-                    symbol: 'circle',
-                    properties: {}
-                  },
+                    properties: { dotted: true }
+                  }),
                   background: Color.blue,
-                },
-                {
-                  type: 'Symbol',
-                  symbol: {
+                }),
+                new SymbolField({
+                  symbol: new Symbol({
+                    symbol: 'empty',
                     color: Color.blue,
-                    symbol: 'circle',
-                    properties: {}
-                  },
+                  }),
                   background: Metal.silver,
-                }
+                }),
               ]
-            },
-            {
-              type: 'Division',
-              division: {
-                type: DivisionType.vertical,
-              },
+            }),
+            new SplitField({
+              division: { type: DivisionType.vertical },
               fields: [
-                {
-                  type: 'Symbol',
-                  symbol: {
+                new SymbolField({
+                  symbol: new Symbol({
+                    symbol: 'circle',
                     color: Color.blue,
-                    symbol: 'circle',
-                    properties: {}
-                  },
+                  }),
                   background: Metal.silver,
-                },
-                {
-                  type: 'Symbol',
-                  symbol: {
-                    color: Metal.silver,
+                }),
+                new SymbolField({
+                  symbol: new Symbol({
                     symbol: 'circle',
-                    properties: {}
-                  },
+                    color: Metal.silver,
+                  }),
                   background: Color.blue,
-                }
+                }),
               ]
-            },
+            }),
           ]
-        },
-        {
-          type: 'Symbol',
-          symbol: {
-            color: Color.blue,
+        }),
+        new SymbolField({
+          symbol: new Symbol({
             symbol: 'circle',
-            properties: {}
-          },
+            color: Color.blue,
+          }),
           background: Metal.silver,
-        }
+        }),
       ],
-    },
+    })
   ],
-}
+});
 
-// let shield: Shield = { field: simpleSymbolField };
-let shield: Shield = { field: dividedField };
+let shield: Shield = { field: simpleSymbolField };
+// let shield: Shield = { field: dividedField };
 
 
 export { shield };

@@ -71,7 +71,9 @@ const shieldPath = pointy;
   </svg>
 
   <figcaption>
-    {JSON.stringify(field)}
+    <pre>
+      {JSON.stringify(field, null, 2)}
+    </pre>
   </figcaption>
 </figure>
 
@@ -79,7 +81,6 @@ const shieldPath = pointy;
 <style>
 figure {
   max-width: 50em;
-  max-height: 50em;
   width: min(100vh, 100vw);
   height: min(100vh, 100vw);
   margin: 0 auto;
@@ -94,5 +95,13 @@ svg {
   width: 100%;
   max-width: 20em;
   margin: 0 auto;
+  flex-shrink: 0;
+}
+
+
+pre {
+  background-color: #ffffff0a;
+  padding: .5em;
+  border-left: 2px solid var(--gray);
 }
 </style>

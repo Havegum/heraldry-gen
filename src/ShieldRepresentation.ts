@@ -34,10 +34,20 @@ export type Background = Tincture | CompositeBackground
 
 // Symbols can be icons, patterns, or no symbol.
 // The properties are symbol-specific and are forwarded to their constructor.
-export interface Symbol {
-  symbol: string,
-  color: Tincture,
-  properties: SymbolProperties,
+export class Symbol {
+  symbol: string;
+  color: Tincture;
+  properties: SymbolProperties;
+
+  constructor (config: {
+    symbol: string,
+    color: Tincture,
+    properties?: SymbolProperties
+  }) {
+    this.symbol = config.symbol;
+    this.color = config.color;
+    this.properties = config.properties || {};
+  }
 }
 
 export interface SymbolProperties {
@@ -45,17 +55,27 @@ export interface SymbolProperties {
 }
 
 // Symbol fields have one symbol, and a (possibly composite) background
-export type SymbolField = {
-  type: "Symbol",
-  symbol: Symbol,
-  background: Background
+export class SymbolField {
+  type: string = 'Symbol';
+  symbol: Symbol;
+  background: Background;
+
+  constructor (config: {symbol: Symbol, background: Background}) {
+    this.symbol = config.symbol;
+    this.background = config.background;
+  }
 }
 
 // Split fields have a division rule, and a list of fields
-export interface SplitField {
-  type: "Division",
-  division: Division,
-  fields: Array<Field>,
+export class SplitField {
+  type: string = 'Division';
+  division: Division;
+  fields: Array<Field>;
+
+  constructor (config: { division: Division, fields: Array<Field> }) {
+    this.division = config.division;
+    this.fields = config.fields;
+  }
 }
 
 export type Field = SymbolField | SplitField;
