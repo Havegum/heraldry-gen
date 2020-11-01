@@ -1,13 +1,17 @@
 <script lang="ts">
-import { setContext } from 'svelte';
-import SymbolField from '@/components/SymbolField.svelte';
+import Division from '@/components/Division.svelte';
+import Symbol from '@/components/Symbol.svelte';
 export let field;
+
+const component = {
+  Symbol,
+  Division,
+};
 
 const width = 100;
 const height = 120
 
 const centerHeight = 0.475;
-setContext('field', { width, height, centerHeight });
 
 const round = `
   M   0,0
@@ -49,7 +53,16 @@ const shieldPath = pointy;
         <use href="#shield" />
       </clipPath>
     </defs>
-    <SymbolField {...field} />
+
+    <g clip-path="url(#shield-clip)">
+      <svelte:component
+        this={component[field.type]}
+        {...field}
+        {width}
+        {height}
+        {centerHeight}
+      />
+    </g>
   </svg>
 
   <figcaption>

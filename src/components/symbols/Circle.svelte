@@ -6,10 +6,9 @@ export const tags = new Set([
 
 
 <script>
-import { getContext } from 'svelte';
-const { width, height } = getContext('field');
-
 export let color;
+export let width;
+export let height;
 </script>
 
 

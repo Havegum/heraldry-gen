@@ -14,8 +14,8 @@ export enum Metal {
 export type Tincture = Color | Metal;
 
 export enum DivisionType {
-  horizontal,
-  vertical,
+  horizontal = 'Horizontal',
+  vertical = 'Vertical',
   // diagonal?
 }
 
@@ -46,14 +46,14 @@ export interface SymbolProperties {
 
 // Symbol fields have one symbol, and a (possibly composite) background
 export type SymbolField = {
-  type: "symbol",
+  type: "Symbol",
   symbol: Symbol,
   background: Background
 }
 
 // Split fields have a division rule, and a list of fields
 export interface SplitField {
-  type: "split",
+  type: "Division",
   division: Division,
   fields: Array<Field>,
 }
