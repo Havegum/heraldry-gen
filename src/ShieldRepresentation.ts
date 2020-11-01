@@ -1,4 +1,4 @@
-enum Color {
+export enum Color {
   red = '#ff0000',
   green = '#00ff00',
   blue = '#0000ff',
@@ -6,68 +6,61 @@ enum Color {
   purple = '#cc00cc',
 }
 
-enum Metal {
+export enum Metal {
   gold = '#ffff00',
   silver = '#ffffff',
 }
 
-type Tincture = Color | Metal;
+export type Tincture = Color | Metal;
 
-enum DivisionType {
+export enum DivisionType {
   horizontal,
   vertical,
   // diagonal?
 }
 
-interface Division {
+export interface Division {
   type: DivisionType,
   // edgeStyle
 }
 
-interface CompositeBackground {
+export interface CompositeBackground {
   colorA: Tincture,
   colorB: Tincture,
   division: Division,
 }
 
-type Background = Tincture | CompositeBackground
+export type Background = Tincture | CompositeBackground
 
 // Symbols can be icons, patterns, or no symbol.
 // The properties are symbol-specific and are forwarded to their constructor.
-interface Symbol {
+export interface Symbol {
   symbol: string,
-  properties: object,
+  color: Tincture,
+  properties: SymbolProperties,
+}
+
+export interface SymbolProperties {
+  [propName: string]: any;
 }
 
 // Symbol fields have one symbol, and a (possibly composite) background
-interface SymbolField {
+export type SymbolField = {
+  type: "symbol",
   symbol: Symbol,
   background: Background
 }
 
 // Split fields have a division rule, and a list of fields
-interface SplitField {
+export interface SplitField {
+  type: "split",
   division: Division,
   fields: Array<Field>,
 }
 
-type Field = SymbolField | SplitField;
+export type Field = SymbolField | SplitField;
 
 // A shield has one field that may split into others
-interface Shield {
+export interface Shield {
   field: Field,
-}
-
-export {
-  Color,
-  Metal,
-  Tincture,
-  Division,
-  CompositeBackground,
-  Background,
-  Symbol,
-  SymbolField,
-  SplitField,
-  Field,
-  Shield,
 }

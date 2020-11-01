@@ -47,8 +47,13 @@
 .svelte-project h6 {
 	font-family: var(--sans);
 }
+
+html, body {
+	background-color: var(--black);
+	color: var(--lightgray);
+}
 /* TODO: more typographic defaults */
 
 .svelte-project {
-	color: var(--black);
+	/* color: var(--black); */
 }

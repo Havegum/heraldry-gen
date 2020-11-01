@@ -1,20 +1,11 @@
-<script>
-import { w } from '@/ShieldGen.ts';
-console.log(w)
-let message = 'Hei, verden!';
+<script lang="ts">
+import Shield from '@/components/Shield.svelte';
+import { shield } from '@/ShieldGen.ts';
+// console.log(w, shield)
 
 // export let target; // Element the app attaches to
 // export let dev; // Are we in production?
 </script>
 
 
-<div class="content">
-	<h1>{message}</h1>
-</div>
-
-
-<style>
-.content {
-	color: var(--blue);
-}
-</style>
+<Shield field={shield.field}/>
