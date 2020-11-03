@@ -14,8 +14,8 @@ export enum Metal {
 export type Tincture = Color | Metal;
 
 export enum DivisionType {
-  horizontal = 'Horizontal',
-  vertical = 'Vertical',
+  horizontal = 'horizontal',
+  vertical = 'vertical',
   // diagonal?
 }
 

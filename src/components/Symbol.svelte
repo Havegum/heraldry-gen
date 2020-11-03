@@ -3,10 +3,10 @@ import Circle from '@/components/symbols/Circle.svelte';
 import Empty from '@/components/symbols/Empty.svelte';
 import Diamond from '@/components/symbols/Diamond.svelte';
 
-const symbols = {
-  'circle': { element: Circle },
-  'empty': { element: Empty },
-  'diamond': { element: Diamond },
+export const symbols = {
+  'circle': { component: Circle },
+  'empty': { component: Empty },
+  'diamond': { component: Diamond },
 }
 </script>
 
@@ -24,10 +24,10 @@ export let type; type;
 <rect x="0" y="0" {width} {height} fill={background}/>
 <g transform="translate({width / 2} {height * centerHeight})" style="color: {background}">
   <svelte:component
-    this={symbols[symbol.symbol].element}
+    this={symbols[symbol.symbol].component}
     color={symbol.color}
     properties={symbol.properties}
-    {width}
-    {height}
+    width={width}
+    height={height}
   />
 </g>

@@ -1,17 +1,11 @@
 <script>
-import Division from '@/components/Division.svelte';
-import Symbol from '@/components/Symbol.svelte';
+import Field from '@/components/Field.svelte';
 
 export let field;
 export let svg = '';
 let svgElement;
 
 $: if (svgElement) svg = svgElement.outerHTML;
-
-const component = {
-  Symbol,
-  Division,
-};
 
 const width = 100;
 const height = 120
@@ -50,44 +44,21 @@ const shieldPath = pointy;
 </script>
 
 
-<figure>
-  <svg viewBox="0 0 {width} {height}" bind:this={svgElement}>
-    <defs>
-      <path id="shield" d={shieldPath}/>
-      <clipPath id="shield-clip">
-        <use href="#shield" />
-      </clipPath>
-    </defs>
+<svg viewBox="0 0 {width} {height}" bind:this={svgElement}>
+  <defs>
+    <path id="shield" d={shieldPath}/>
+    <clipPath id="shield-clip">
+      <use href="#shield" />
+    </clipPath>
+  </defs>
 
-    <g clip-path="url(#shield-clip)">
-      <svelte:component
-        this={component[field.type]}
-        {...field}
-        {width}
-        {height}
-        {centerHeight}
-      />
-    </g>
-  </svg>
+  <g clip-path="url(#shield-clip)">
+    <Field {field} {width} {height} {centerHeight} />
+  </g>
+</svg>
 
-  <figcaption>
-    <pre>
-      {JSON.stringify(field, null, 2)}
-    </pre>
-  </figcaption>
-</figure>
-
-
+ 
 <style>
-figure {
-  max-width: 50em;
-  width: min(100vh, 100vw);
-  height: min(100vh, 100vw);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
 svg {
   display: block;
   position: relative;
@@ -96,12 +67,5 @@ svg {
   max-width: 20em;
   margin: 0 auto;
   flex-shrink: 0;
-}
-
-
-pre {
-  background-color: #ffffff0a;
-  padding: .5em;
-  border-left: 2px solid var(--gray);
 }
 </style>
