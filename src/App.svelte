@@ -1,11 +1,11 @@
 <script>
 import Shield from '@/components/Shield.svelte';
-import { simple, complex } from '@/sampleShields.ts';
+import ReloadButton from '@/components/ReloadButton.svelte';
+// import { simple, complex } from '@/sampleShields.ts';
 import { generate } from '@/shieldGen.ts';
+import prefab1 from '@/prefab/1.json';
 
 let shield = generate();
-console.log(shield);
-
 // export let target; // Element the app attaches to
 // export let dev; // Are we in production?
 
@@ -26,8 +26,9 @@ function dataURI (svg) {
 
 
 <figure>
-  <Shield field={shield.field} bind:svg />
+  <Shield field={shield.field} shape={shield.shape} bind:svg />
   <figcaption>
+    <ReloadButton on:click={() => shield = generate()}>Regenerate</ReloadButton>
     <pre>
       {JSON.stringify(shield.field, null, 2)}
     </pre>

@@ -43,5 +43,7 @@
     "build": "rimraf build && rollup -c",
     "postbuild": "node postbuild.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bezier-js": "^3.1.0"
+  }
 }

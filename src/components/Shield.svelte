@@ -1,16 +1,16 @@
 <script>
+import { tick } from 'svelte';
 import Field from '@/components/Field.svelte';
 
 export let field;
+export let shape;
 export let svg = '';
 let svgElement;
 
-$: if (svgElement) svg = svgElement.outerHTML;
+$: svgElement && field, tick().then(() => svg = svgElement.outerHTML);
 
 const width = 100;
 const height = 120
-
-const centerHeight = 0.475;
 
 const round = `
   M   0,0
@@ -24,40 +24,23 @@ const round = `
   L 100,0
   Z
 `;
-
-const aBit = 25;
-
-const pointy = `
-  M  0,0
-  L  0,50
-  C  0,${height/2 + aBit}
-    ${50 - aBit},${height - aBit/2}
-    50,${height}
-  C ${50 + aBit},${height - aBit/2}
-    100,${height/2 + aBit}
-    100,50
-  L 100,0
-  Z
-`;
-
-const shieldPath = pointy;
 </script>
 
 
 <svg viewBox="0 0 {width} {height}" bind:this={svgElement}>
   <defs>
-    <path id="shield" d={shieldPath}/>
+    <path id="shield" d={shape}/>
     <clipPath id="shield-clip">
       <use href="#shield" />
     </clipPath>
   </defs>
 
   <g clip-path="url(#shield-clip)">
-    <Field {field} {width} {height} {centerHeight} />
+    <Field {field} {width} {height} />
   </g>
 </svg>
 
- 
+
 <style>
 svg {
   display: block;

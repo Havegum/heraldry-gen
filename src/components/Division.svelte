@@ -10,7 +10,6 @@ export const components = {
 
 
 <script>
-
 export let division;
 export let fields;
 export let width;

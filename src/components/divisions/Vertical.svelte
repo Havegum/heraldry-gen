@@ -9,12 +9,12 @@ export let centerHeight;
 
 
 {#each fields as field, i}
-  <g transform="translate({i * width / 2} 0)">
+  <!-- <g transform=  "translate({i * width / 2} 0)"> -->
     <Field
       field={field}
       width={width / 2}
       height={height}
       centerHeight={centerHeight}
     />
-  </g>
+  <!-- </g>  -->
 {/each}

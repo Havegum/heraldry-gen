@@ -1,0 +1,81 @@
+{
+  "shape": "M0,0 L0,50 C0,85 25,107.5 50,120 C75,107.5 100,85 100,50 L100,0Z",
+  "field": {
+  "type": "Division",
+  "division": {
+    "type": "horizontal"
+  },
+  "fields": [
+    {
+      "type": "Symbol",
+      "symbol": {
+        "symbol": "lighthouse",
+        "color": "#c83223",
+        "properties": {}
+      },
+      "background": "#f0f0f0"
+    },
+    {
+      "type": "Division",
+      "division": {
+        "type": "vertical"
+      },
+      "fields": [
+        {
+          "type": "Symbol",
+          "symbol": {
+            "symbol": "lighthouse",
+            "color": "#1480bd",
+            "properties": {}
+          },
+          "background": "#ffe600"
+        },
+        {
+          "type": "Division",
+          "division": {
+            "type": "horizontal"
+          },
+          "fields": [
+            {
+              "type": "Division",
+              "division": {
+                "type": "vertical"
+              },
+              "fields": [
+                {
+                  "type": "Symbol",
+                  "symbol": {
+                    "symbol": "lighthouse",
+                    "color": "#f0f0f0",
+                    "properties": {}
+                  },
+                  "background": "#2a2a2a"
+                },
+                {
+                  "type": "Symbol",
+                  "symbol": {
+                    "symbol": "lighthouse",
+                    "color": "#f0f0f0",
+                    "properties": {}
+                  },
+                  "background": "#2a2a2a"
+                }
+              ]
+            },
+            {
+              "type": "Symbol",
+              "symbol": {
+                "symbol": "lighthouse",
+                "color": "#f0f0f0",
+                "properties": {}
+              },
+              "background": "#c83223"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+}

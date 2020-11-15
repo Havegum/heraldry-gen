@@ -1,7 +1,13 @@
 <script context="module">
-export const tags = new Set([
+const tags = new Set([
   'geometric'
 ]);
+
+const options = {
+  dotted: [true, false]
+};
+
+export { tags, options };
 </script>
 
 
@@ -11,8 +17,6 @@ export let width;
 export let height;
 
 export let properties;
-
-
 
 $: size = Math.min(width, height) * 0.5;
 </script>
