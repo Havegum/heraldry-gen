@@ -2,7 +2,7 @@
 import Shield from '@/components/Shield.svelte';
 import ReloadButton from '@/components/ReloadButton.svelte';
 // import { simple, complex } from '@/sampleShields.ts';
-import { generate } from '@/shieldGen.ts';
+import { generate } from '@/shieldGen.js';
 import prefab1 from '@/prefab/1.json';
 
 let shield = generate();

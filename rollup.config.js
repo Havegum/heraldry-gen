@@ -3,7 +3,6 @@ import autoPreprocess from 'svelte-preprocess';
 import postcssPresetEnv from 'postcss-preset-env';
 
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
 import livereload from 'rollup-plugin-livereload';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
@@ -82,7 +81,6 @@ export default {
 			emitCss: true,
 			css: false, // Emit CSS to be handled by postcss
 		}),
-		typescript({ sourceMap: !production }),
 
 		resolve({
 			browser: true,
