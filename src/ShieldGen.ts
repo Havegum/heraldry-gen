@@ -189,8 +189,8 @@ function generateField (depth: number, boundary: Boundary, outline: any[], palet
 
   let r = Math.random();
   const { type, boundaries } = chooseDivision(boundary, outline);
-  // if (r < 1 / (depth * 2)) {
-  if (depth < 2) {
+  if (r < 1 / (depth * 2)) {
+  // if (depth < 2) {
     return new SplitField({
       division: { type },
       fields: boundaries.map(b => generateField(depth + 1, b, outline, palette)),

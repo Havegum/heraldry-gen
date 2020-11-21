@@ -32,7 +32,9 @@ button {
 
   opacity: .5;
 
-  transition: background-color ease-out 50ms;
+  transition:
+    background-color ease-out 50ms,
+    opacity ease-out 50ms;
 }
 
 button:active,
