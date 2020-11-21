@@ -1,39 +1,33 @@
-// @ts-ignore
 import { symbols } from './components/Symbol.svelte';
-import { Shield, Color, Metal, Tincture,   SymbolField, Point, Boundary, SplitField, Field, DivisionType, Symbol } from './shieldRepresentation';
+import { Color, Metal, SymbolField, SplitField, DivisionType, Symbol } from './ShieldRepresentation.js';
 import { Bezier } from "bezier-js";
 
-let symbolKeys = Object.keys(symbols);
+const symbolKeys = Object.keys(symbols);
 
-interface Palette {
-  colors: Set<Color>,
-  metals: Set<Metal>,
-}
-
-function pick<T> (arr:Array<T>): T {
+function pick (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function randomEnumKey (enumeration): string {
+function randomEnumKey (enumeration) {
   const keys = Object.keys(enumeration);
   return pick(keys);
 }
 
-function getIntersections (beziers: any[], y): Point[] {
+function getIntersections (beziers, y) {
   let intersectionPoint = {
     p1: { x: Number.MIN_VALUE, y },
     p2: { x: Number.MAX_VALUE, y }
   };
-  let points: Point[] = new Array();
+  let points = new Array();
   for (let bezier of beziers) {
     for (let t of bezier.intersects(intersectionPoint)) {
-      points.push(bezier.get(t) as Point);
+      points.push(bezier.get(t));
     }
   }
   return points;
 }
 
-function chooseDivision (boundary: Boundary, outline: any[]): { type: DivisionType, boundaries: Boundary[] } {
+function chooseDivision (boundary, outline) {
   // const type = Math.random() < 0.5 ? DivisionType.horizontal : DivisionType.vertical;
 
   if (Math.random() < 0.5) {
@@ -49,7 +43,7 @@ function chooseDivision (boundary: Boundary, outline: any[]): { type: DivisionTy
 
     const mid = (topLeft + bottomRight + bottomLeft + topRight) / 4;
 
-    const bLeft: Boundary = {
+    const bLeft = {
       topLeft:     { x: topLeft,    y: top    },
       topRight:    { x: mid,        y: top    },
       bottomLeft:  { x: bottomLeft, y: bottom },
@@ -58,7 +52,7 @@ function chooseDivision (boundary: Boundary, outline: any[]): { type: DivisionTy
       touchesRightEdge: false,
     };
 
-    const bRight: Boundary = {
+    const bRight = {
       topLeft:     { x: mid,         y: top    },
       topRight:    { x: topRight,    y: top    },
       bottomLeft:  { x: mid,         y: bottom },
@@ -99,7 +93,7 @@ function chooseDivision (boundary: Boundary, outline: any[]): { type: DivisionTy
       }
     }
 
-    const bTop: Boundary = {
+    const bTop = {
       topLeft: { x: leftX[0], y: top },
       topRight: { x: rightX[0], y: top },
       bottomLeft: { x: leftX[1], y: mid },
@@ -108,7 +102,7 @@ function chooseDivision (boundary: Boundary, outline: any[]): { type: DivisionTy
       touchesRightEdge: boundary.touchesRightEdge,
     };
 
-    const bBottom: Boundary = {
+    const bBottom = {
       topLeft: { x: leftX[1], y: mid },
       topRight: { x: rightX[1], y: mid },
       bottomLeft: { x: leftX[2], y: bottom },
@@ -122,7 +116,7 @@ function chooseDivision (boundary: Boundary, outline: any[]): { type: DivisionTy
   }
 }
 
-function chooseSymbol (force = false, color: Tincture, center: Point): Symbol {
+function chooseSymbol (force = false, color, center) {
   let symbol = pick(symbolKeys);
   while (force && symbol === 'empty') {
     symbol = pick(symbolKeys);
@@ -141,10 +135,10 @@ function chooseSymbol (force = false, color: Tincture, center: Point): Symbol {
   });
 }
 
-function chooseTinctures(palette: Palette): [Tincture, Tincture] {
+function chooseTinctures (palette) {
   const { colors, metals } = palette;
 
-  let tinctures: [Tincture, Tincture] = [
+  let tinctures = [
      pick([...metals.keys()]),
      pick([...colors.keys()])
   ];
@@ -153,7 +147,7 @@ function chooseTinctures(palette: Palette): [Tincture, Tincture] {
   return tinctures;
 }
 
-function expandPalette (palette: Palette): Palette {
+function expandPalette (palette) {
   const { colors, metals } = palette;
 
   if (colors.size < 1) colors.add(Color[randomEnumKey(Color)]);
@@ -184,7 +178,7 @@ function expandPalette (palette: Palette): Palette {
 }
 
 
-function generateField (depth: number, boundary: Boundary, outline: any[], palette?: Palette): Field {
+function generateField (depth, boundary, outline, palette=null) {
   if (!palette) palette = { colors: new Set(), metals: new Set() };
 
   let r = Math.random();
@@ -218,7 +212,7 @@ function generateField (depth: number, boundary: Boundary, outline: any[], palet
 }
 
 
-function generateShape (): { path: string, outline: any[] } {
+function generateShape () {
     /*
       To reason about the shape of the shield, we're building it up as a series
       of bezier curves. The string is a SVG-renderable path, and the outline
@@ -272,9 +266,9 @@ function generateShape (): { path: string, outline: any[] } {
 }
 
 
-export function generate (): Shield {
+export function generate () {
   const { path, outline } = generateShape();
-  const boundary: Boundary = {
+  const boundary = {
     topLeft: { x: 0, y: 0 },
     topRight: { x: 100, y: 0 },
     bottomLeft: { x: 50, y: 120 },
