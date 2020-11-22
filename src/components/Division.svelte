@@ -1,27 +1,24 @@
 <script context="module">
-import Horizontal from '@/components/divisions/Horizontal.svelte';
-import Vertical from '@/components/divisions/Vertical.svelte';
+import * as Horizontal from '@/components/divisions/Horizontal.svelte';
+import * as Vertical from '@/components/divisions/Vertical.svelte';
 
-export const components = {
-  'horizontal': { component: Horizontal },
-  'vertical': { component: Vertical },
+export const divisions = {
+  'horizontal': Horizontal,
+  'vertical': Vertical,
 };
 </script>
 
 
 <script>
-export let division;
+export let type;
+console.log(type)
+export let properties = {};
 export let fields;
-export let width;
-export let height;
-export let centerHeight;
 </script>
 
 
 <svelte:component
-  this={components[division.type].component}
-  fields={fields}
-  width={width}
-  height={height}
-  centerHeight={centerHeight}
+  this={divisions[type].default}
+  {...properties}
+  {fields}
 />

@@ -1,9 +1,9 @@
 <script>
 import { tick } from 'svelte';
-import Field from '@/components/Field.svelte';
+import Division from '@/components/Division.svelte';
 
-export let field;
-export let shape;
+export let division;
+export let fields;
 export let svg = '';
 let svgElement;
 
@@ -24,19 +24,21 @@ const round = `
   L 100,0
   Z
 `;
+
+console.log('Shield')
 </script>
 
 
 <svg viewBox="0 0 {width} {height}" bind:this={svgElement}>
   <defs>
-    <path id="shield" d={shape}/>
+    <path id="shield" d={round}/>
     <clipPath id="shield-clip">
       <use href="#shield" />
     </clipPath>
   </defs>
 
   <g clip-path="url(#shield-clip)">
-    <Field {field} {width} {height} />
+    <Division {...division} {fields} />
   </g>
 </svg>
 

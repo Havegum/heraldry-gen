@@ -20,21 +20,18 @@ export const DivisionType = {
 // Symbols can be icons, patterns, or no symbol.
 // The properties are symbol-specific and are forwarded to their constructor.
 export class Symbol {
-  constructor ({ symbol, color, center, properties=null }) {
+  constructor ({ symbol, color, properties=null }) {
     this.symbol = symbol;
     this.color = color;
-    this.center = center;
     this.properties = properties || {};
   }
 }
 
-// Symbol fields have one symbol, and a (possibly composite) background
-export class SymbolField {
-  constructor ({ symbol, background, boundary }) {
+export class Field {
+  constructor ({ symbol, background }) {
     this.type = 'Symbol';
     this.symbol = symbol;
     this.background = background;
-    this.boundary = boundary;
   }
 }
 

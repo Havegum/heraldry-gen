@@ -17,6 +17,8 @@ function dataURI (svg) {
   svg = encodeURIComponent(svg)
   return 'data:image/svg+xml;utf8,' + svg;
 }
+
+console.log(shield);
 </script>
 
 
@@ -26,11 +28,11 @@ function dataURI (svg) {
 
 
 <figure>
-  <Shield field={shield.field} shape={shield.shape} bind:svg />
+  <Shield {...shield} bind:svg />
   <figcaption>
     <ReloadButton on:click={() => shield = generate()}>Regenerate</ReloadButton>
     <pre>
-      {JSON.stringify(shield.field, null, 2)}
+      {JSON.stringify(shield, null, 2)}
     </pre>
   </figcaption>
 </figure>

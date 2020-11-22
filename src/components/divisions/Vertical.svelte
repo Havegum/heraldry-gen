@@ -1,20 +1,31 @@
+<script context="module">
+export const getFieldCount = () => 2;
+</script>
+
+
 <script>
-import Field from '@/components/Field.svelte';
+import Symbol from '@/components/Symbol.svelte';
 
 export let fields;
-export let width;
-export let height;
-export let centerHeight;
+
+$: width = 100 / fields.length;
 </script>
 
 
 {#each fields as field, i}
-  <!-- <g transform=  "translate({i * width / 2} 0)"> -->
-    <Field
-      field={field}
-      width={width / 2}
-      height={height}
-      centerHeight={centerHeight}
+    <rect
+      x={i * width}
+      y="0"
+      width={width}
+      height="120"
+      fill={field.background}
     />
-  <!-- </g>  -->
+
+    <Symbol
+      {...field.symbol}
+      x={i * width + width / 2}
+      y={120 / 2}
+      width={width}
+      height={120}
+    />
 {/each}
