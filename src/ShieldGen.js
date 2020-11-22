@@ -18,12 +18,16 @@ function chooseSymbol (force = false, color) {
   let symbol = pick(symbolKeys);
   while (force && symbol === 'empty') symbol = pick(symbolKeys);
 
-  let properties = {};
-  for (let key in symbols[symbol]?.options || ({})) {
-    properties[key] = pick(symbols[symbol].options[key]);
-  }
+  const options = symbols[symbol].options;
+  if (!options) {
+    return new Symbol({ symbol, color });
+  } else {
 
-  return new Symbol({ symbol, color, properties });
+    let properties = {};
+    for (let key in options)
+      properties[key] = pick(options[key]);
+    return new Symbol({ symbol, color, properties });
+  }
 }
 
 function chooseTinctures (palette) {

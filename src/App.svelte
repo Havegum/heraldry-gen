@@ -1,11 +1,12 @@
 <script>
+import { tick } from 'svelte';
 import Shield from '@/components/Shield.svelte';
 import ReloadButton from '@/components/ReloadButton.svelte';
 // import { simple, complex } from '@/sampleShields.ts';
 import { generate } from '@/shieldGen.js';
 import prefab1 from '@/prefab/1.json';
 
-let shield = generate();
+let shield = prefab1; //generate();
 // export let target; // Element the app attaches to
 // export let dev; // Are we in production?
 
@@ -18,7 +19,12 @@ function dataURI (svg) {
   return 'data:image/svg+xml;utf8,' + svg;
 }
 
-console.log(shield);
+
+function regenerate (i) {
+  if (typeof i !== 'number') i = 0;
+  shield = generate();
+  if (i < 18) setTimeout(() => regenerate(i + 1), 2 ** (i*0.5));
+}
 </script>
 
 
@@ -30,7 +36,7 @@ console.log(shield);
 <figure>
   <Shield {...shield} bind:svg />
   <figcaption>
-    <ReloadButton on:click={() => shield = generate()}>Regenerate</ReloadButton>
+    <ReloadButton on:click={regenerate}>Regenerate</ReloadButton>
     <pre>
       {JSON.stringify(shield, null, 2)}
     </pre>

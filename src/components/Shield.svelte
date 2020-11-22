@@ -7,7 +7,9 @@ export let fields;
 export let svg = '';
 let svgElement;
 
-$: svgElement && field, tick().then(() => svg = svgElement.outerHTML);
+$: if (svgElement && fields) {
+  tick().then(() => svg = svgElement.outerHTML);
+}
 
 const width = 100;
 const height = 120

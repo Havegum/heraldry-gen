@@ -1,5 +1,8 @@
 <script context="module">
-export const getFieldCount = () => 2;
+export const getFieldCount = ({ fields }) => fields;
+export const options = {
+  fields: [2, 3, 4]
+};
 </script>
 
 
@@ -20,8 +23,10 @@ $: height = 120 / fields.length;
     height={height}
     fill={field.background}
   />
+
   <Symbol
     {...field.symbol}
+    background={field.background}
     x={50}
     y={i * height + height / 2}
     width={100}

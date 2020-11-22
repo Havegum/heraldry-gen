@@ -23,7 +23,7 @@ export class Symbol {
   constructor ({ symbol, color, properties=null }) {
     this.symbol = symbol;
     this.color = color;
-    this.properties = properties || {};
+    if (properties) this.properties = properties;
   }
 }
 

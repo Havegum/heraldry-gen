@@ -18,12 +18,14 @@ export const symbols = {
 <script>
 export let symbol;
 export let color;
-export let properties;
+export let properties = undefined;
+export let background;
 export let x;
 export let y;
 export let width;
 export let height;
-console.log({ symbol, color })
+
+$: conditionalProperties = properties ? { properties } : {};
 </script>
 
 
@@ -31,7 +33,7 @@ console.log({ symbol, color })
   <svelte:component
     this={symbols[symbol].default}
     color={color}
-    properties={properties}
+    {...conditionalProperties}
     width={width}
     height={height}
   />

@@ -11,7 +11,6 @@ export const divisions = {
 
 <script>
 export let type;
-console.log(type)
 export let properties = {};
 export let fields;
 </script>
